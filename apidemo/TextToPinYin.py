@@ -7,24 +7,18 @@ APP_KEY = ''
 # 您的应用密钥
 APP_SECRET = ''
 
-# 合成音频保存路径, 例windows路径：PATH = "C:\\tts\\media.mp3"
-PATH = ''
-
-
 def createRequest():
     '''
     note: 将下列变量替换为需要请求的参数
     '''
-    q = '待合成文本'
-    voiceName = '发言人名称'
-    format = 'mp3'
+    q = '待获取拼音的文本'
 
-    data = {'q': q, 'voiceName': voiceName, 'format': format}
+    data = {'q': q}
 
     addAuthParams(APP_KEY, APP_SECRET, data)
 
     header = {'Content-Type': 'application/x-www-form-urlencoded'}
-    res = doCall('https://openapi.youdao.com/ttsapi', header, data, 'post')
+    res = doCall('https://openapi.youdao.com/getPinYin', header, data, 'post')
     saveFile(res)
 
 

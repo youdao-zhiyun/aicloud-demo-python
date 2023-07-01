@@ -9,7 +9,7 @@ APP_KEY = ''
 # 您的应用密钥
 APP_SECRET = ''
 
-# 识别音频路径, 例windows路径：PATH = 'C:\\tts\\media.wav'
+# 识别音频路径, 例windows路径：PATH = 'C:\\youdao\\media.wav'
 PATH = ''
 
 
@@ -48,8 +48,8 @@ def send_data(path, step, ws_client):
     end_message = "{\"end\": \"true\"}"
     send_binary_message(ws_client.ws, end_message)
 
-# 网易有道智云流式语音翻译服务api调用demo
-# api接口: wss://openapi.youdao.com/stream_speech_trans
+# 网易有道智云实时语音识别服务api调用demo
+# api接口: wss://openapi.youdao.com/stream_asropenapi
 if __name__ == '__main__':
     createRequest()
     sys.exit()

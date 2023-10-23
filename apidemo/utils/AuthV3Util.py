@@ -28,6 +28,17 @@ def addAuthParams(appKey, appSecret, params):
     params['signType'] = 'v3'
     params['sign'] = sign
 
+def addAuthParams(appKey, appSecret, q):
+    salt = str(uuid.uuid1())
+    curtime = str(int(time.time()))
+    sign = calculateSign(appKey, appSecret, q, salt, curtime)
+    params = {'appKey': appKey,
+              'salt': salt,
+              'curtime': curtime,
+              'signType': 'v3',
+              'sign': sign}
+    return params
+
 '''
     计算鉴权签名 -
     计算方式 : sign = sha256(appKey + input(q) + salt + curtime + appSecret)

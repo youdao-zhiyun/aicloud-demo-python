@@ -10,7 +10,7 @@ APP_KEY = ''
 # 您的应用密钥
 APP_SECRET = ''
 
-# 待转写的音频文件路径，例 windows 路径：PATH = "C:\\youdao\\media.jpg"
+# 待转写的音频文件路径，例 windows 路径：PATH = "C:\\youdao\\media.wav"
 PATH = ''
 # 单个文件分片大小 : 10M
 SLICE_SIZE = 10485760

@@ -2,7 +2,7 @@ import base64
 import json
 import requests
 
-from utils.AuthV3Util import addAuthParams
+from utils.AuthV3Util import returnAuthMap
 
 # 您的应用ID
 APP_KEY = ''
@@ -58,7 +58,7 @@ def createRequest():
     print()
 
 def generateReportHelper(requestDTO):
-    params = addAuthParams(APP_KEY, APP_SECRET, requestDTO["taskId"])
+    params = returnAuthMap(APP_KEY, APP_SECRET, requestDTO["taskId"])
     params["taskId"] = requestDTO["taskId"]
     params["userLevel"] = requestDTO["userLevel"]
     params["scene"] = requestDTO["scene"]
@@ -74,7 +74,7 @@ def generateReportHelper(requestDTO):
     return str(generate_report_result.content, 'utf-8')
 
 def generateRecommendationHelper(requestDTO):
-    params = addAuthParams(APP_KEY, APP_SECRET, requestDTO["taskId"])
+    params = returnAuthMap(APP_KEY, APP_SECRET, requestDTO["taskId"])
     '''
     note: 将下列变量替换为需要请求的参数
     取值参考文档：https://ai.youdao.com/DOCSIRMA/html/aigc/api/AIkyls/index.html
@@ -96,7 +96,7 @@ def generateRecommendationHelper(requestDTO):
     return str(genereate_recommendation_result.content, 'utf-8')
 
 def generateDialogHelper(requestDTO, sysWords, userWords):
-    params = addAuthParams(APP_KEY, APP_SECRET, requestDTO["taskId"])
+    params = returnAuthMap(APP_KEY, APP_SECRET, requestDTO["taskId"])
     params["taskId"] = requestDTO["taskId"]
     params["userLevel"] = requestDTO["userLevel"]
     params["scene"] = requestDTO["scene"]
@@ -126,7 +126,7 @@ def generateDialogHelper(requestDTO, sysWords, userWords):
     return generate_dialog_result_json["data"]["resultArr"][0]["result"][0]
 
 def generateTopicHelper(topic):
-    params = addAuthParams(APP_KEY, APP_SECRET, topic)
+    params = returnAuthMap(APP_KEY, APP_SECRET, topic)
     params["topic"] = topic
     data = json.dumps(params)
     print(data)
@@ -141,7 +141,7 @@ def generateTopicHelper(topic):
     
 def getDefaultTopicHelper():
     q = 'topics'
-    params = addAuthParams(APP_KEY, APP_SECRET, q)
+    params = returnAuthMap(APP_KEY, APP_SECRET, q)
     params["q"] = q
     data = json.dumps(params)
     header = {'Content-Type': 'application/json;charset=utf-8'}

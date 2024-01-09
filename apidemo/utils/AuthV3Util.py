@@ -28,7 +28,8 @@ def addAuthParams(appKey, appSecret, params):
     params['signType'] = 'v3'
     params['sign'] = sign
 
-def addAuthParams(appKey, appSecret, q):
+
+def returnAuthMap(appKey, appSecret, q):
     salt = str(uuid.uuid1())
     curtime = str(int(time.time()))
     sign = calculateSign(appKey, appSecret, q, salt, curtime)
@@ -38,6 +39,7 @@ def addAuthParams(appKey, appSecret, q):
               'signType': 'v3',
               'sign': sign}
     return params
+
 
 '''
     计算鉴权签名 -

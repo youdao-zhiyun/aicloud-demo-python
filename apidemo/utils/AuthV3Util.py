@@ -29,6 +29,29 @@ def addAuthParams(appKey, appSecret, params):
     params['sign'] = sign
 
 
+'''
+添加小p老师鉴权相关参数（下划线格式） -
+    app_key : 应用ID
+    salt : 随机值
+    curtime : 当前时间戳(秒)
+    sign—_type : 签名版本
+    sign : 请求签名
+
+    @param appKey    您的应用ID
+    @param appSecret 您的应用密钥
+    @param paramsMap 请求参数表
+'''
+def addXiaopAuthParams(appKey, appSecret, params):
+    salt = str(uuid.uuid1())
+    curtime = str(int(time.time()))
+    sign = calculateSign(appKey, appSecret, curtime, salt, curtime)
+    params['app_key'] = appKey
+    params['salt'] = salt
+    params['curtime'] = curtime
+    params['sign_type'] = 'v3'
+    params['sign'] = sign
+
+
 def returnAuthMap(appKey, appSecret, q):
     salt = str(uuid.uuid1())
     curtime = str(int(time.time()))
